@@ -7,10 +7,10 @@ Xft.hinting:    true
 Xft.hintstyle: hintsmedium
 
 !FONTS
-URxvt*font:           xft:DejaVuSansMono:style=book:size=12
-URxvt*boldFont:       xft:DejaVuSansMono:style=Bold:size=12
-URxvt*italicFont:     xft:DejaVuSansMono:style=Oblique:size=12
-URxvt*boldItalicFont: xft:DejaVuSansMono:style=BoldOblique:size=12
+URxvt*font:           xft:Hack:style=book:size=12
+URxvt*boldFont:       xft:Hack:style=Bold:size=12
+URxvt*italicFont:     xft:Hack:style=Oblique:size=12
+URxvt*boldItalicFont: xft:Hack:style=BoldOblique:size=12
 
 !URXVT OPTIONS
 URxvt.url-select.launcher:  firefox
