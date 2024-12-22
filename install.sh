@@ -1,6 +1,6 @@
 #!/bin/bash
-# PLEASE RUN THIS SCRIPT ONLY AS THE USER YOU ARE INSTALLING FOR
-packages='vim rxvt-unicode tmux'
+# RUN AS YOUR USER NOT ROOT
+package_list='vim kitty tmux'
       printf  "===========================================================\n"
       echo -n "Welcome the dotfile install script (for arch/manjaro linux)"
       printf  "\n=========================================================\n\n"
