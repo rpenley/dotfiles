@@ -1,5 +1,6 @@
 #
 # ~/.bashrc
+# Linux Only
 #
 
 [[ $- != *i* ]] && return
