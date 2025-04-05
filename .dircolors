@@ -1,0 +1,106 @@
+# ~/.dircolors — Gruvbox Dark Style
+
+# Core file types
+NORMAL 00
+FILE 00
+DIR 38;5;136
+LINK 38;5;108
+FIFO 38;5;172
+SOCK 38;5;172
+DOOR 38;5;172
+BLK 38;5;94;1
+CHR 38;5;94;1
+ORPHAN 38;5;167
+MISSING 38;5;167
+EXEC 38;5;142
+
+# Special permissions
+SETUID 38;5;124;1
+SETGID 38;5;88;1
+STICKY_OTHER_WRITABLE 38;5;66;1
+OTHER_WRITABLE 38;5;66
+STICKY 38;5;239
+
+# Archives and compressed
+.tar 38;5;214
+.tgz 38;5;208
+.arj 38;5;208
+.taz 38;5;208
+.lzh 38;5;208
+.zip 38;5;208
+.z 38;5;208
+.Z 38;5;208
+.gz 38;5;208
+.bz2 38;5;208
+.bz 38;5;208
+.tbz 38;5;208
+.tbz2 38;5;208
+.tz 38;5;208
+.deb 38;5;208
+.rpm 38;5;208
+.jar 38;5;208
+.xz 38;5;208
+.txz 38;5;208
+.7z 38;5;208
+.rz 38;5;208
+.cpio 38;5;208
+
+# Images
+.jpg 38;5;109
+.jpeg 38;5;109
+.png 38;5;109
+.gif 38;5;109
+.bmp 38;5;109
+.tiff 38;5;109
+.svg 38;5;109
+.xpm 38;5;109
+
+# Audio
+.mp3 38;5;175
+.ogg 38;5;175
+.wav 38;5;175
+.flac 38;5;175
+.m4a 38;5;175
+.aac 38;5;175
+
+# Video
+.mp4 38;5;175
+.mkv 38;5;175
+.avi 38;5;175
+.mov 38;5;175
+.webm 38;5;175
+
+# Docs
+.txt 38;5;246
+.md 38;5;245
+.nfo 38;5;245
+.log 38;5;245
+.tex 38;5;245
+.pdf 38;5;245
+.epub 38;5;245
+
+# Code
+.c 38;5;108
+.h 38;5;108
+.cpp 38;5;108
+.rs 38;5;208
+.sh 38;5;142
+.zsh 38;5;142
+.py 38;5;214
+.pl 38;5;137
+.rb 38;5;137
+.go 38;5;74
+.js 38;5;221
+.ts 38;5;33
+.java 38;5;167
+.lua 38;5;137
+.css 38;5;109
+.html 38;5;109
+.xml 38;5;109
+
+# Misc
+Makefile 38;5;208
+Dockerfile 38;5;66
+LICENSE 38;5;241
+README 38;5;246
+

@@ -115,15 +115,22 @@ brew install firefox maccy amethyst kitty
 
 # Development Tools
 echo "Installing development tools..."
-brew install font-hack-nerd-font neovim ripgrep starship
+brew install font-hack-nerd-font neovim starship
 
 # Install GNU tools
 echo "Installing GNU utilities..."
 brew install wget curl grep make openssh bash coreutils findutils gnu-sed gnu-tar gawk gnutls gnu-indent gnu-which
 
+# Install New tools
+echo "Installing modern tooling"
+brew install ripgrep eza bat fd
+
 # Programming Language Support
 echo "Installing programming languages and toolchains..."
 brew install zig zls rustup-init llvm gcc
+
+echo "Installing zsh extensions and deps"
+brew install zsh-syntax-highlighting zsh-autocomplete vivid
 
 # Install Rust support
 rustup-init -y
