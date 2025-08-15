@@ -122,21 +122,6 @@ install_packages() {
     
     # Applications
     print_status "Installing applications..."
-    local gui_apps=(
-        "firefox"
-        "maccy"
-        "amethyst"
-        "kitty"
-    )
-    
-    for app in "${gui_apps[@]}"; do
-        if brew list "$app" >/dev/null 2>&1; then
-            print_status "✓ $app already installed"
-        else
-            print_status "Installing $app..."
-            brew install "$app"
-        fi
-    done
     
     # Development Tools
     print_status "Installing development tools..."
@@ -276,24 +261,6 @@ configure_macos() {
     print_status "Configuring sound..."
     # Set alert sound to pong
     defaults write NSGlobalDomain com.apple.sound.beep.sound -string "/System/Library/Sounds/Pong.aiff"
-    
-    # Safari Privacy Settings (may require Safari to be closed)
-    print_status "Configuring Safari privacy..."
-    # Check if Safari is running and warn user
-    if pgrep -x "Safari" > /dev/null; then
-        print_warning "Safari is currently running. These settings may not apply until Safari is restarted."
-    fi
-    
-    # Try to set Safari preferences (may fail due to sandboxing)
-    defaults write com.apple.Safari UniversalSearchEnabled -bool false 2>/dev/null || print_warning "Could not set Safari UniversalSearchEnabled (Safari may need to be closed)"
-    defaults write com.apple.Safari SuppressSearchSuggestions -bool true 2>/dev/null || print_warning "Could not set Safari SuppressSearchSuggestions (Safari may need to be closed)"
-    defaults write com.apple.Safari SendDoNotTrackHTTPHeader -bool true 2>/dev/null || print_warning "Could not set Safari SendDoNotTrackHTTPHeader (Safari may need to be closed)"
-    
-    print_status "Safari privacy settings attempted (some may require manual configuration)"
-    print_status "Manual Safari configuration needed:"
-    print_status "* Disable 'Include search engine suggestions' in Safari > Settings > Search"
-    print_status "* Enable 'Ask websites not to track me' in Safari > Settings > Privacy"
-    print_status "* Disable 'Include Spotlight Suggestions' in Safari > Settings > Search"
     
     # Window and Animation Settings
     print_status "Configuring animations and window behavior..."

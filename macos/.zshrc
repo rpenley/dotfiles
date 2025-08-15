@@ -1,145 +1,114 @@
-# History
-HISTFILE=$HOME/.zsh_history
-HISTSIZE=20000
-SAVEHIST=20000
-setopt EXTENDED_HISTORY         # Save command timestamp
-setopt HIST_EXPIRE_DUPS_FIRST   # Remove duplicates first
-setopt HIST_IGNORE_DUPS         # Don't store duplications
-setopt HIST_FIND_NO_DUPS        # Ignore duplicates when searching
-setopt HIST_REDUCE_BLANKS       # Remove superfluous blanks
-setopt HIST_VERIFY              # Verify command when using history
+# If you come from bash you might have to change your $PATH.
+# export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-# Directory navigation
-setopt AUTO_CD                  # Type directory name to cd
-setopt AUTO_PUSHD               # Push directory onto stack automatically
-setopt PUSHD_IGNORE_DUPS        # Ignore duplicates in the directory stack
-setopt PUSHDMINUS               # Make `cd -` work
-setopt EXTENDED_GLOB            # Extended globbing capabilities
-setopt PROMPT_SUBST             # Allow variable substitution in prompt
+# Path to your oh-my-zsh installation.
+export ZSH="$HOME/.oh-my-zsh"
+# Set name of the theme to load --- if set to "random", it will
+# load a random theme each time oh-my-zsh is loaded, in which case,
+# to know which specific one was loaded, run: echo $RANDOM_THEME
+# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
+#ZSH_THEME="alanpeabody"
 
-# Global completion behavior
-setopt GLOB_COMPLETE            # Show completions for globs
-setopt AUTO_LIST                # Automatically list choices on ambiguous completion
-setopt COMPLETE_IN_WORD         # Complete from both ends of a word
-setopt ALWAYS_TO_END            # Move cursor to end of word when completing
+# Set list of themes to pick from when loading at random
+# Setting this variable when ZSH_THEME=random will cause zsh to load
+# a theme from this variable instead of looking in $ZSH/themes/
+# If set to an empty array, this variable will have no effect.
+# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 
-# No beep
-unsetopt BEEP
+# Uncomment the following line to use case-sensitive completion.
+# CASE_SENSITIVE="true"
 
-# get brew location
-BREW_PREFIX=$(brew --prefix)
+# Uncomment the following line to use hyphen-insensitive completion.
+# Case-sensitive completion must be off. _ and - will be interchangeable.
+# HYPHEN_INSENSITIVE="true"
 
-# Homebrew Config
-PATH="$BREW_PREFIX/opt/llvm/bin:$PATH"
-PATH="$BREW_PREFIX/opt/curl/bin:$PATH"
-PATH="$BREW_PREFIX/opt/gcc/bin:$PATH"
-PATH="$BREW_PREFIX/bin:$PATH"
+# Uncomment one of the following lines to change the auto-update behavior
+# zstyle ':omz:update' mode disabled  # disable automatic updates
+ zstyle ':omz:update' mode auto      # update automatically without asking
+# zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 
+# Uncomment the following line to change how often to auto-update (in days).
+# zstyle ':omz:update' frequency 13
 
-# Define LS_COLORS for highlighting
-if type vivid &>/dev/null; then
-	export LS_COLORS=$(vivid generate gruvbox-dark)
-else 
-	export LS_COLORS="di=1;34:ln=1;36:so=1;31:pi=1;33:ex=1;32:bd=1;34;46:cd=1;34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43"
-fi
+# Uncomment the following line if pasting URLs and other text is messed up.
+# DISABLE_MAGIC_FUNCTIONS="true"
 
-# Make Homebrew's completions available
-if type brew &>/dev/null; then
-  FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
-  
-  # Ensure compinit is called after FPATH is modified
-  autoload -Uz compinit
-  compinit
-fi
+# Uncomment the following line to disable colors in ls.
+# DISABLE_LS_COLORS="true"
 
-# Syntax highlighting
-if [[ -f $BREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]]; then
-  source $BREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-fi
+# Uncomment the following line to disable auto-setting terminal title.
+# DISABLE_AUTO_TITLE="true"
 
-# Auto-suggestions 
-if [[ -f $BREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]]; then
-  source $BREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-fi
+# Uncomment the following line to enable command auto-correction.
+# ENABLE_CORRECTION="true"
 
-# Completion configuration
-zstyle ':completion:*' cache-path $HOME/.zsh/cache        # Specify cache location
-#zstyle ':completion:*' group-name ''                      # Group matches by category
-#zstyle ':completion:*' insert-tab false
-zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"   # Colored completion
-#zstyle ':completion:*' list-prompt ''
-zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' # Case-insensitive completion
-zstyle ':completion:*' menu select                        # Use menu selection for completion
-zstyle ':completion:*' special-dirs true                  # Include . and .. in completion
-zstyle ':completion:*' use-cache on                       # Cache completion
-zstyle ':completion:*:descriptions' format '%F{green}-- %d --%f'
-zstyle ':completion:*:warnings' format '%F{red}No matches found%f'
+# Uncomment the following line to display red dots whilst waiting for completion.
+# You can also set it to another string to have that shown instead of the default red dots.
+# e.g. COMPLETION_WAITING_DOTS="%F{yellow}waiting...%f"
+# Caution: this setting can cause issues with multiline prompts in zsh < 5.7.1 (see #5765)
+# COMPLETION_WAITING_DOTS="true"
 
-# Configure completion to cycle through options with tab
-#bindkey '^I' autosuggest-accept
+# Uncomment the following line if you want to disable marking untracked files
+# under VCS as dirty. This makes repository status check for large repositories
+# much, much faster.
+# DISABLE_UNTRACKED_FILES_DIRTY="true"
 
-#ZSH_HIGHLIGHT_STYLES[path]='fg=cyan'
+# Uncomment the following line if you want to change the command execution time
+# stamp shown in the history command output.
+# You can set one of the optional three formats:
+# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# or set a custom format using the strftime function format specifications,
+# see 'man strftime' for details.
+# HIST_STAMPS="mm/dd/yyyy"
 
-# FZF key bindings and completion if installed
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# Would you like to use another custom folder than $ZSH/custom?
+# ZSH_CUSTOM=/path/to/new-custom-folder
 
-# Rust packages if cargo exists
-[ -f ~/.cargo/env ] && source ~/.cargo/env
+# Which plugins would you like to load?
+# Standard plugins can be found in $ZSH/plugins/
+# Custom plugins may be added to $ZSH_CUSTOM/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+# Add wisely, as too many plugins slow down shell startup.
+plugins=(git)
 
-# Use GNU Utilities
-alias sed='gsed'
-alias tar='gtar'
-alias awk='gawk'
-alias make='gmake'
+#source $ZSH/oh-my-zsh.sh
 
-# directory listings with exa
-if (( $+commands[eza] )); then
-	alias ls='eza'
-	alias ll='eza -la'
-	alias lt='eza -T --git-ignore'
-fi
+# User configuration
 
-# find with fd or gnu find
-if (( $+commands[fd] )); then
-	alias find='fd'
-	FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
-elif (( $+commands[gfind] )); then
-	alias find='gfind'
-fi
+# export MANPATH="/usr/local/man:$MANPATH"
 
-# grep with ripgrep or gnu grep
-if (( $+commands[rg] )); then
-	alias grep='rg'
-elif (( $+commands[ggrep] )); then
-	alias grep='ggrep'
-fi
+# You may need to manually set your language environment
+# export LANG=en_US.UTF-8
 
-# cat with bat
-if (( $+commands[bat] )); then
-	alias cat='bat --style=plain --paging=never'  # act like cat
-	alias ccat='bat'
-fi
+# Preferred editor for local and remote sessions
+# if [[ -n $SSH_CONNECTION ]]; then
+#   export EDITOR='vim'
+# else
+#   export EDITOR='mvim'
+# fi
 
-# Better git diff with delta
-if (( $+commands[delta] )); then
-	# This doesn't replace git diff directly, but sets up git to use delta
-	git config --global core.pager "delta"
-	git config --global interactive.diffFilter "delta --color-only"
-	git config --global delta.navigate true
-	git config --global delta.light false  # Use dark mode
-fi
+# idk why kitty/ghostty does this to us
+#export TERM='xterm-256color'
 
-# Configure Compiler Flags
-LLVM_HOME="$BREW_PREFIX/opt/llvm"
-LDFLAGS="-L$LLVM_HOME/lib -Wl,-rpath,$LLVM_HOME/lib,$BREW_PREFIX/opt/sdl3/lib"
-CFLAGS="-I$LLVM_HOME/include -I$BREW_PREFIX/opt/sdl3/include"
-CPPFLAGS=$CFLAGS
-CC="$LLVM_HOME/bin/clang"
-CXX="$LLVM_HOME/bin/clang++"
+# Compilation flags
+# export ARCHFLAGS="-arch x86_64"
 
-export CPATH="$(brew --prefix sdl3)/include:$CPATH"
-export LIBRARY_PATH="$(brew --prefix sdl3)/lib:$LIBRARY_PATH"
-export PKG_CONFIG_PATH="$(brew --prefix sdl3)/lib/pkgconfig:$PKG_CONFIG_PATH"
+# Set personal aliases, overriding those provided by oh-my-zsh libs,
+# plugins, and themes. Aliases can be placed here, though oh-my-zsh
+# users are encouraged to define aliases within the ZSH_CUSTOM folder.
+# For a full list of active aliases, run `alias`.
+#
+# Example aliases
+# alias zshconfig="mate ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
+alias wvim='vim -u ~/.vim/writer.vim'
+
+# ssh-add ~/.ssh/*ed25519
+export PATH="$HOME/bin:/usr/local/bin:/opt/homebrew/bin:/opt/homebrew/sbin:$PATH"
+export PATH="$(brew --prefix openjdk)/bin:$(brew --prefix llvm)/bin:$(brew --prefix gcc)/bin:$PATH"
+export LDFLAGS="-L$(brew --prefix llvm)/lib"
+export CPPFLAGS="-I$(brew --prefix llvm)/include"
+export CFLAGS="-I$(brew --prefix llvm)/include"
+export CPATH="/usr/local/include:$(brew --prefix sdl3)/include"
 
 eval "$(starship init zsh)"
-

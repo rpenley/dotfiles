@@ -8,7 +8,6 @@ return {
       c = { "clangtidy" },
       cpp = { "clangtidy" },
       go = { "golangci-lint" },
-      zig = { "zls" },
       cmake = { "cmakelint" },
     },
   },

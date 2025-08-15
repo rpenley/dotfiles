@@ -1,1 +1,18 @@
-common/.config/nvim/lazy-lock.json
+*/.config/nvim/lazy-lock.json
+
+# Vim plugins managed by vim-plug
+*/.config/nvim/lazy-lock.json
+*/.config/nvim/plugged/
+*/.vim/plugged/
+
+# Other plugin managers
+*/.local/share/nvim/
+*/.vim/bundle/
+*/.config/nvim/pack/
+
+# Other Neovim data/state directories
+*/.cache/nvim/
+*/.state/nvim/
+
+# But KEEP lazy-lock.json - it's the lockfile
+!**/lazy-lock.json

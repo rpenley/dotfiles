@@ -1,0 +1,5 @@
+# In common/.stow-local-ignore
+\.vim/plugged/.*
+\.config/nvim/plugged/.*
+\.local/share/nvim/.*
+lazy-lock\.json

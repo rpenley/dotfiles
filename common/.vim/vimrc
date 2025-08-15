@@ -1,0 +1,19 @@
+call plug#begin()
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
+Plug 'gruvbox-community/gruvbox'
+Plug 'vim-airline/vim-airline'
+Plug 'preservim/nerdtree'
+call plug#end()
+
+syntax enable
+filetype on
+
+set tabstop=4
+set softtabstop=4
+set number
+set hlsearch
+set termguicolors
+set background=dark
+
+colorscheme gruvbox
