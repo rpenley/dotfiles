@@ -40,38 +40,39 @@ detect_os() {
     fi
 }
 
-# Function to create symlinks for generic dotfiles
-link_generic_dotfiles() {
-    print_status "Creating symlinks for generic dotfiles..."
+# Function to create symlinks for common dotfiles using GNU Stow
+link_common_dotfiles() {
+    print_status "Creating symlinks for common dotfiles using GNU Stow..."
     
     local dotfiles_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-    local home_dir="$HOME"
     
-    # Find all dotfiles and dotfolders in root (excluding OS-specific directories)
-    for item in "$dotfiles_dir"/.* "$dotfiles_dir"/.*; do
-        # Skip if item doesn't exist, is . or .., or is git-related
-        [[ ! -e "$item" ]] && continue
-        [[ "$(basename "$item")" == "." ]] && continue
-        [[ "$(basename "$item")" == ".." ]] && continue
-        [[ "$(basename "$item")" == ".git" ]] && continue
-        [[ "$(basename "$item")" == ".gitignore" ]] && continue
-        
-        local item_name="$(basename "$item")"
-        local target="$home_dir/$item_name"
-        
-        # Skip OS-specific directories
-        [[ "$item_name" == "macos" ]] && continue
-        [[ "$item_name" == "linux" ]] && continue
-        
-        if [[ -L "$target" ]]; then
-            print_warning "Symlink already exists: $target"
-        elif [[ -e "$target" ]]; then
-            print_warning "File/directory already exists: $target (skipping)"
-        else
-            ln -s "$item" "$target"
-            print_success "Created symlink: $target -> $item"
-        fi
-    done
+    # Check if stow is installed
+    if ! command -v stow >/dev/null 2>&1; then
+        print_error "GNU Stow not found. It should be installed by the OS-specific script."
+        print_status "Please install GNU Stow manually or run the OS-specific configuration first."
+        return 1
+    fi
+    
+    # Check if common directory exists
+    if [[ ! -d "$dotfiles_dir/common" ]]; then
+        print_warning "Common dotfiles directory not found, skipping common dotfiles"
+        return 0
+    fi
+    
+    print_status "Using GNU Stow to manage common dotfiles..."
+    
+    # Change to dotfiles root directory
+    cd "$dotfiles_dir"
+    
+    # Use stow with --adopt to handle existing files
+    if stow --target="$HOME" --verbose --adopt common; then
+        print_success "GNU Stow successfully linked common dotfiles"
+        print_status "Common dotfiles have been symlinked to your home directory"
+    else
+        print_error "GNU Stow failed to link common dotfiles"
+        print_status "Run 'stow --target=$HOME --verbose --adopt common' manually to retry"
+        return 1
+    fi
 }
 
 # Main installation function
@@ -111,12 +112,13 @@ main() {
         "unknown")
             print_error "Unsupported operating system: $OSTYPE"
             print_error "This script supports macOS and Linux only."
+            print_error "For Windows, run: windows/install.ps1"
             exit 1
             ;;
     esac
     
-    # Create symlinks for generic dotfiles
-    link_generic_dotfiles
+    # Create symlinks for common dotfiles
+    link_common_dotfiles
     
     print_success "Dotfiles installation completed!"
     print_status "You may need to restart your shell or source your configuration files."
@@ -137,17 +139,26 @@ OPTIONS:
 This script will:
 1. Detect your operating system (macOS or Linux)
 2. Run the appropriate OS-specific configuration script
-3. Create symlinks for generic dotfiles in the repository root
+3. Use GNU Stow to link common dotfiles from common/ directory
 
 Directory Structure Expected:
 ├── install.sh          # This script
+├── common/
+│   ├── .bashrc         # Common dotfiles for all platforms
+│   ├── .vimrc
+│   └── .config/
+│       ├── nvim/
+│       └── starship.toml
 ├── macos/
-│   └── config.sh       # macOS-specific configuration
+│   ├── config.sh       # macOS-specific configuration
+│   ├── .zshrc          # macOS-specific dotfiles
+│   └── .config/
+│       ├── starship.toml
+│       └── kitty/
 ├── linux/
 │   └── config.sh       # Linux-specific configuration
-├── .vimrc              # Generic dotfiles
-├── .bashrc
-└── ...
+├── windows/
+│   └── install.ps1     # Windows PowerShell script
 
 EOF
 }
