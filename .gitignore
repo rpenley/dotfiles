@@ -12,3 +12,41 @@
 
 # But KEEP lazy-lock.json - it's the lockfile
 !**/lazy-lock.json
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Editor backup files
+*~
+*.swp
+*.swo
+*.tmp
+
+# Logs
+*.log
+
+# Runtime directories that shouldn't be tracked
+**/.cache/
+**/.local/share/
+**/.state/
+
+# But allow specific config directories we want to track
+!**/.local/share/applications/
+!**/.config/
+
+# Neovim specific ignores (from your current nvim/.gitignore)
+**/.config/nvim/debug
+**/.config/nvim/data
+**/.config/nvim/.tests
+**/.config/nvim/tt.*
+**/.config/nvim/foo.*
+
+# Backup files
+*.backup
+*.bak

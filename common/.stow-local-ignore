@@ -1,5 +1,39 @@
-# In common/.stow-local-ignore
+# Stow ignore file for common dotfiles
+# These patterns will be ignored when stowing
+
+# Vim plugin directories
 \.vim/plugged/.*
 \.config/nvim/plugged/.*
+
+# Neovim data directories  
 \.local/share/nvim/.*
-lazy-lock\.json
+\.cache/nvim/.*
+\.state/nvim/.*
+\.config/nvim/pack/.*
+
+# But keep the lockfile - this should be managed by stow
+!lazy-lock\.json
+
+# OS files
+\.DS_Store
+Thumbs\.db
+
+# Backup files
+.*\.backup
+.*\.bak
+.*~
+
+# Log files
+.*\.log
+
+# Temporary files
+.*\.tmp
+.*\.swp
+.*\.swo
+
+# Neovim specific ignores
+\.config/nvim/debug
+\.config/nvim/data
+\.config/nvim/\.tests
+\.config/nvim/tt\..*
+\.config/nvim/foo\..*

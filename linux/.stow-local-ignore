@@ -1,0 +1,14 @@
+# Stow ignore file for Linux dotfiles
+
+# Vim plugin directories
+\.vim/plugged/.*
+\.config/nvim/plugged/.*
+
+# Neovim data directories
+\.local/share/nvim/.*
+\.cache/nvim/.*
+\.state/nvim/.*
+\.config/nvim/pack/.*
+
+# Keep lockfiles
+!lazy-lock\.json
