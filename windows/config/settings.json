@@ -1,0 +1,57 @@
+{
+    "$help": "https://aka.ms/terminal-documentation",
+    "$schema": "https://aka.ms/terminal-settings-schema",
+    "defaultProfile": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
+    "copyOnSelect": false,
+    "copyFormatting": "none",
+    "profiles": {
+        "defaults": {
+            "font": {
+                "face": "Hack Nerd Font",
+                "size": 12
+            },
+            "colorScheme": "Gruvbox Dark",
+            "opacity": 100,
+            "useAcrylic": false,
+            "scrollbarState": "hidden",
+            "padding": "8"
+        },
+        "list": []
+    },
+    "schemes": [
+        {
+            "name": "Gruvbox Dark",
+            "background": "#282828",
+            "foreground": "#ebdbb2",
+            "cursorColor": "#ebdbb2",
+            "selectionBackground": "#504945",
+            "black": "#282828",
+            "red": "#cc241d",
+            "green": "#98971a",
+            "yellow": "#d79921",
+            "blue": "#458588",
+            "purple": "#b16286",
+            "cyan": "#689d6a",
+            "white": "#a89984",
+            "brightBlack": "#928374",
+            "brightRed": "#fb4934",
+            "brightGreen": "#b8bb26",
+            "brightYellow": "#fabd2f",
+            "brightBlue": "#83a598",
+            "brightPurple": "#d3869b",
+            "brightCyan": "#8ec07c",
+            "brightWhite": "#ebdbb2"
+        }
+    ],
+    "actions": [
+        { "command": "copy",        "keys": "ctrl+c" },
+        { "command": "paste",       "keys": "ctrl+v" },
+        { "command": "find",        "keys": "ctrl+shift+f" },
+        { "command": "newTab",      "keys": "ctrl+t" },
+        { "command": "closeTab",    "keys": "ctrl+w" },
+        { "command": "nextTab",     "keys": "ctrl+tab" },
+        { "command": "prevTab",     "keys": "ctrl+shift+tab" },
+        { "command": { "action": "splitPane", "split": "vertical" },   "keys": "ctrl+shift+d" },
+        { "command": { "action": "splitPane", "split": "horizontal" }, "keys": "ctrl+shift+e" }
+    ]
+}
